@@ -4,16 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join WhatsApp Group</title>
-    <!-- Instant redirect: 0 seconds -->
+    <!-- Universal 0-sec redirect for both Android/iOS -->
     <meta http-equiv="refresh" content="0; url=https://chat.whatsapp.com/Jmmqzj00ZOdCEK72MUk3Nk?mode=gi_t">
+    <meta name="apple-itunes-app" content="app-id=310633997">
     <link rel="canonical" href="https://chat.whatsapp.com/Jmmqzj00ZOdCEK72MUk3Nk?mode=gi_t">
 </head>
-<body style="font-family: Arial, sans-serif; text-align: center; padding: 50px; background: #25D366;">
-    <h1>🔗 Redirecting to WhatsApp Group...</h1>
-    <p>If not automatic, <a href="https://chat.whatsapp.com/Jmmqzj00ZOdCEK72MUk3Nk?mode=gi_t" style="color: white; font-weight: bold;">click here</a>.</p>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; padding: 40px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+    <div>
+        <h1 style="font-size: 1.8em; margin-bottom: 10px;">🔗 Redirecting to WhatsApp Group</h1>
+        <p style="font-size: 1.1em; margin-bottom: 20px;">Opening app automatically...</p>
+        <p style="font-size: 0.9em; opacity: 0.9;"><strong>Tip:</strong> If it goes to App Store/Play Store, set WhatsApp as default link opener in Settings > Apps/WhatsApp > Supported Links.</p>
+        <a href="https://chat.whatsapp.com/Jmmqzj00ZOdCEK72MUk3Nk?mode=gi_t" 
+           style="display: inline-block; background: white; color: #25D366; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+           Open WhatsApp Group
+        </a>
+    </div>
     <script>
-        // JS fallback for aggressive redirect (handles in-app browsers)
-        window.location.href = 'https://chat.whatsapp.com/Jmmqzj00ZOdCEK72MUk3Nk?mode=gi_t';
+        const userAgent = navigator.userAgent.toLowerCase();
+        const whatsappUrl = 'https://chat.whatsapp.com/Jmmqzj00ZOdCEK72MUk3Nk?mode=gi_t';
+        
+        // Android: Try intent for direct app (fallback to HTTPS)
+        if (/android/.test(userAgent)) {
+            window.location.href = 'intent://chat.whatsapp.com/Jmmqzj00ZOdCEK72MUk3Nk#Intent;scheme=https;package=com.whatsapp;S.browser_fallback_url=' + encodeURIComponent(whatsappUrl) + ';end';
+            setTimeout(() => { window.location.href = whatsappUrl; }, 1000);
+        } 
+        // iOS: Universal link + App Store meta hint (direct app if installed)
+        else if (/iphone|ipad|ipod/.test(userAgent)) {
+            window.location.href = whatsappUrl;
+        } 
+        // Desktop/Other: Web fallback
+        else {
+            window.location.href = whatsappUrl;
+        }
     </script>
 </body>
 </html>
